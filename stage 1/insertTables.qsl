@@ -1,0 +1,23 @@
+INSERT INTO Maternity VALUES (1, 'רות כהן', 32, '0501234567');
+INSERT INTO Maternity VALUES (2, 'נועה לוי', 28, '0529876543');
+INSERT INTO Maternity VALUES (3, 'יעל ישראלי', 35, '0543216789');
+
+INSERT INTO Baby VALUES (1, 'זכר', 3.2);
+INSERT INTO Baby VALUES (2, 'נקבה', 2.8);
+INSERT INTO Baby VALUES (3, 'זכר', 3.5);
+
+INSERT INTO Doctor VALUES (1, 'ד"ר מיכאל ברוך', 10, 'קיסרי');
+INSERT INTO Doctor VALUES (2, 'ד"ר שרון לוי', 15, 'רגיל');
+INSERT INTO Doctor VALUES (3, 'ד"ר רונית כהן', 8, 'קיסרי');
+
+INSERT INTO Nurse VALUES (1, 'אסתר רביב', 'בוקר');
+INSERT INTO Nurse VALUES (2, 'אורן כהן', 'ערב');
+INSERT INTO Nurse VALUES (3, 'דנה לוי', 'לילה');
+
+INSERT INTO Room VALUES (1, 2, 'פנוי');
+INSERT INTO Room VALUES (2, 3, 'תפוס');
+INSERT INTO Room VALUES (3, 1, 'פנוי');
+
+INSERT INTO BirthRecord VALUES (1, 1, 1, 1, 1, 1, TO_DATE('2024-03-10', 'YYYY-MM-DD'), TO_DATE('2024-03-12', 'YYYY-MM-DD'), 'קיסרי');
+INSERT INTO BirthRecord VALUES (2, 2, 2, 2, 2, 2, TO_DATE('2024-03-15', 'YYYY-MM-DD'), TO_DATE('2024-03-18', 'YYYY-MM-DD'), 'רגיל');
+INSERT INTO BirthRecord VALUES (3, 3, 3, 3, 3, 3, TO_DATE('2024-03-20', 'YYYY-MM-DD'), TO_DATE('2024-03-22', 'YYYY-MM-DD'), 'קיסרי');

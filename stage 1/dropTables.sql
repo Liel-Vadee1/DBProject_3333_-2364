@@ -1,0 +1,6 @@
+DROP TABLE BirthRecord;
+DROP TABLE Room;
+DROP TABLE Nurse;
+DROP TABLE Doctor;
+DROP TABLE Baby;
+DROP TABLE Maternity;
