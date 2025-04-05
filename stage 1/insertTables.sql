@@ -27,3 +27,9 @@ INSERT INTO BirthRecord (id, maternity_id, baby_id, doctor_id, nurse_id, room_id
 (1, 1, 1, 1, 1, 1, TO_DATE('2024-03-10', 'YYYY-MM-DD'), TO_DATE('2024-03-12', 'YYYY-MM-DD'), 'C-section'),
 (2, 2, 2, 2, 2, 2, TO_DATE('2024-03-15', 'YYYY-MM-DD'), TO_DATE('2024-03-18', 'YYYY-MM-DD'), 'Natural'),
 (3, 3, 3, 3, 3, 3, TO_DATE('2024-03-20', 'YYYY-MM-DD'), TO_DATE('2024-03-22', 'YYYY-MM-DD'), 'C-section');
+
+INSERT INTO Midwife (doctor_id, birthrecord_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(1, 3);
