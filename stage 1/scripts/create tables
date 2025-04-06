@@ -1,0 +1,75 @@
+
+CREATE TABLE baby
+(
+  id_b INT NOT NULL,
+  weigt Float NOT NULL,
+  gender VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id_b)
+);
+
+CREATE TABLE room
+(
+  id_r INT NOT NULL,
+  floor INT NOT NULL,
+  availability VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id_r)
+);
+
+CREATE TABLE nurse
+(
+  id_n INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  shift_hours VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id_n)
+);
+
+CREATE TABLE doctor
+(
+  id_d INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  birth_specialty VARCHAR(50) NOT NULL,
+  seniority Float NOT NULL,
+  PRIMARY KEY (id_d)
+);
+
+CREATE TABLE attending_to
+(
+  id_n INT NOT NULL,
+  id_r INT NOT NULL,
+  PRIMARY KEY (id_n, id_r),
+  FOREIGN KEY (id_n) REFERENCES nurse(id_n),
+  FOREIGN KEY (id_r) REFERENCES room(id_r)
+);
+
+CREATE TABLE maternity
+(
+  id_m INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  age Float NOT NULL,
+  phone INT NOT NULL,
+  id_r INT NOT NULL,
+  PRIMARY KEY (id_m),
+  FOREIGN KEY (id_r) REFERENCES room(id_r)
+);
+
+CREATE TABLE birth_record
+(
+  id_br INT NOT NULL,
+  delivery_type VARCHAR(15) NOT NULL,
+  birth_date DATE NOT NULL,
+  discharge_date DATE NOT NULL,
+  id_m INT NOT NULL,
+  id_b INT NOT NULL,
+  PRIMARY KEY (id_br),
+  FOREIGN KEY (id_m) REFERENCES maternity(id_m),
+  FOREIGN KEY (id_b) REFERENCES baby(id_b)
+);
+
+CREATE TABLE midwife
+(
+  id_br INT NOT NULL,
+  id_d INT NOT NULL,
+  PRIMARY KEY (id_br, id_d),
+  FOREIGN KEY (id_br) REFERENCES birth_record(id_br),
+  FOREIGN KEY (id_d) REFERENCES doctor(id_d)
+);

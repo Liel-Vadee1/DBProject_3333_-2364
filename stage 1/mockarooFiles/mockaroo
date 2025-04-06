@@ -1,5 +1,0 @@
-INSERT INTO Maternity (id, name, age, phone) VALUES (1, 'אביגיל לוי', 29, '0509876543');
-INSERT INTO Maternity (id, name, age, phone) VALUES (2, 'דנה כהן', 33, '0512345678');
-INSERT INTO Maternity (id, name, age, phone) VALUES (3, 'מירי ישראלי', 26, '0523456789');
-INSERT INTO Maternity (id, name, age, phone) VALUES (4, 'יעל פרץ', 31, '0534567890');
-INSERT INTO Maternity (id, name, age, phone) VALUES (5, 'נועה רביב', 35, '0545678901');
