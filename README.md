@@ -92,7 +92,7 @@ This phase refines database logic, implements constraints, and adds advanced que
 #### 1. **Data Updates**  
 - **Release Date Adjustment**: Discharge dates now auto-set to **3 days after birth**. 
   - *The Code*:
-    ![The Code](stage%202/resources/update 3 days after birth.png)
+    ![The Code](Liel-Vadee1/DBProject_3333_-2364/stage 2/resources/update 3 days after birth.png)
   - *Before*:  
     ![Unsorted Dates](stage%202/resources/before update.png)  
   - *After*:  
