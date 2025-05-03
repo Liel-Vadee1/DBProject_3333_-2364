@@ -131,9 +131,9 @@ This phase refines database logic, implements constraints, and adds advanced que
    - *The Code*:
     ![The Code](stage%202/resources/delete%20date.png)  
    - *Before*:  
-     ![Before Deletion](stage%202/before%20delete%20date.png)  
+     ![Before Deletion](stage%202/resources/before%20delete%20date.png)  
    - *After*:  
-     ![After Deletion](stage%202/after%20delete%20date.png)  
+     ![After Deletion](stage%202/resources/after%20delete%20date.png)  
 
 2. **Remove Inexperienced Doctors**: Deleted doctors with **0 years** of cesarean experience.
    - *The Code*:
@@ -162,7 +162,7 @@ This phase refines database logic, implements constraints, and adds advanced que
 | 4  | Nurses caring for ~2 babies/room | ![Query 4](stage%202/resources/4%20query.png) | ![Result 4](stage%202/resources/4.4%20query.png) |
 | 5  | Monthly birth rate averages | ![Query 5](stage%202/resources/5%20query.png) | ![Result 5](stage%202/resources/5.5%20query.png) |
 | 6  | Natural births by experienced doctors (≥2 yrs) | ![Query 6](stage%202/resources/6%20query.png) | ![Result 6](stage%202/resources/6.6%20query.png) |
-| 7  | Male cesarean babies (mothers aged 30+, 1 child) | ![Query 7](stage%202/resources/7%20query.png) | ![Result 7](stage%202/resources/7.7%20query.png) |
+| 7  | Male cesarean babies (mothers aged 30+, 1 child) | ![Query 7](stage%202/resources/7%20query.png) | ![Result 7](stage%202/resources/7.7%20quey.png) |
 | 8  | Nurses/mothers in Room 10 (May) | ![Query 8](stage%202/resources/8%20query.png) | ![Result 8](stage%202/resources/8.8%20query.png) |
 
 *(Add rows for additional queries as needed.)*  
