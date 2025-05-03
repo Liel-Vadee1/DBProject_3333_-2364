@@ -92,78 +92,78 @@ This phase refines database logic, implements constraints, and adds advanced que
 #### 1. **Data Updates**  
 - **Release Date Adjustment**: Discharge dates now auto-set to **3 days after birth**. 
   - *The Code*:
-    ![The Code](Liel-Vadee1/DBProject_3333_-2364/stage 2/resources/update 3 days after birth.png)
+    ![The Code](stage%202/resources/update%203%20days%20after%20birth.png)
   - *Before*:  
-    ![Unsorted Dates](stage%202/resources/before update.png)  
+    ![Unsorted Dates](stage%202/resources/before%20update.png)  
   - *After*:  
     ![Updated Dates](stage%202/resources/after.png)  
 
 - **Room Occupancy Logic**: Rooms marked "occupied" only if **two mothers** are assigned.  
   - *The Code*:
-    ![The Code](stage%202/resources/occupied code.png)
+    ![The Code](stage%202/resources/occupied%20code.png)
   - *Before*:  
-    ![Room Before](stage%202/resources/before occupied.png)  
+    ![Room Before](stage%202/resources/before%20occupied.png)  
   - *After*:  
-    ![Room After](stage%202/resources/after occupied.png)  
+    ![Room After](stage%202/resources/after%20occupied.png)  
 
 - **Mother Data Correction**: Updated phone number for Mother ID 34.
   - *The Code*:
-    ![The Code](stage%202/resources/34 maternity.png)  
+    ![The Code](stage%202/resources/34%20maternity.png)  
   - *Before*:  
-    ![Phone Before](stage%202/resources/before 34.png)  
+    ![Phone Before](stage%202/resources/before%2034.png)  
   - *After*:  
-    ![Phone After](stage%202/resources/after 34.png)  
+    ![Phone After](stage%202/resources/after%2034.png)  
 
 ---
 
 #### 2. **Table Constraints**  
 1. **Default Room Status**: New rooms default to "available".  
-   ![Constraint 1](stage%202/resources/default to clear room.png)  
+   ![Constraint 1](stage%202/resources/default%20to%20clear%20room.png)  
 2. **Mother Age Validation**: Blocks invalid ages (e.g., <18 or >50).  
-   ![Constraint 2](stage%202/resources/constrain mother age.png)  
+   ![Constraint 2](stage%202/resources/constrain%20mother%20age.png)  
 3. **NULL Prevention**: Ensures baby records have no NULL values.  
-   ![Constraint 3](stage%202/resources/constraint beby null.png)  
+   ![Constraint 3](stage%202/resources/constraint%20beby%20null.png)  
 
 ---
 
 #### 3. **Data Deletions**  
 1. **Purge Old Records**: Deleted births before `2024-04-07`.
    - *The Code*:
-    ![The Code](stage%202/resources/delete date.png)  
+    ![The Code](stage%202/resources/delete%20date.png)  
    - *Before*:  
-     ![Before Deletion](stage%202/before delete date.png)  
+     ![Before Deletion](stage%202/before%20delete%20date.png)  
    - *After*:  
-     ![After Deletion](stage%202/after delete date.png)  
+     ![After Deletion](stage%202/after%20delete%20date.png)  
 
 2. **Remove Inexperienced Doctors**: Deleted doctors with **0 years** of cesarean experience.
    - *The Code*:
-    ![The Code](stage%202/resources/0 seniority.png)  
+    ![The Code](stage%202/resources/0%20seniority.png)  
    - *Before*:  
-     ![Doctors Before](stage%202/resources/before seniority.png)  
+     ![Doctors Before](stage%202/resources/before%20seniority.png)  
    - *After*:  
-     ![Doctors After](stage%202/resources/after seniority.png)  
+     ![Doctors After](stage%202/resources/after%20seniority.png)  
 
 3. **Unassigned Nurses**: Removed nurses not linked to any room.
    - *The Code*:
-    ![The Code](stage%202/resources/nurses no room.png)  
+    ![The Code](stage%202/resources/nurses%20no%20room.png)  
    - *Before*:  
-     ![Nurses Before](stage%202/resources/before nurses.png)  
+     ![Nurses Before](stage%202/resources/before%20nurses.png)  
    - *After*:  
-     ![Nurses After](stage%202/resources/after nurses.png)  
+     ![Nurses After](stage%202/resources/after%20nurses.png)  
 
 ---
 
 #### 4. **Advanced Queries**  
 | #  | Query Purpose | Screenshot | Output |
 |----|---------------|------------|--------|
-| 1  | Rooms with 1 mother + night-shift nurse | ![Query 1](stage%202/resources/1 query.png) | ![Result 1](stage%202/resources/1.1 query.png) |
-| 2  | Mothers with multiple births on same date | ![Query 2](stage%202/resources/2 query.png) | ![Result 2](stage%202/resources/2.2 query.png) |
-| 3  | Avg baby weight per birth type (last year) | ![Query 3](stage%202/resources/3 query.png) | ![Result 3](stage%202/resources/3.3 query.png) |
-| 4  | Nurses caring for ~2 babies/room | ![Query 4](stage%202/resources/4 query.png) | ![Result 4](stage%202/resources/4.4 query.png) |
-| 5  | Monthly birth rate averages | ![Query 5](stage%202/resources/5 query.png) | ![Result 5](stage%202/resources/5.5 query.png) |
-| 6  | Natural births by experienced doctors (≥2 yrs) | ![Query 6](stage%202/resources/6 query.png) | ![Result 6](stage%202/resources/6.6 query.png) |
-| 7  | Male cesarean babies (mothers aged 30+, 1 child) | ![Query 7](stage%202/resources/7 query) | ![Result 7](stage%202/resources/7.7 query.png) |
-| 8  | Nurses/mothers in Room 10 (May) | ![Query 8](stage%202/resources/8 query.png) | ![Result 8](stage%202/resources/8.8 query.png) |
+| 1  | Rooms with 1 mother + night-shift nurse | ![Query 1](stage%202/resources/1%20query.png) | ![Result 1](stage%202/resources/1.1%20query.png) |
+| 2  | Mothers with multiple births on same date | ![Query 2](stage%202/resources/2%20query.png) | ![Result 2](stage%202/resources/2.2%20query.png) |
+| 3  | Avg baby weight per birth type (last year) | ![Query 3](stage%202/resources/3%20query.png) | ![Result 3](stage%202/resources/3.3%20query.png) |
+| 4  | Nurses caring for ~2 babies/room | ![Query 4](stage%202/resources/4%20query.png) | ![Result 4](stage%202/resources/4.4%20query.png) |
+| 5  | Monthly birth rate averages | ![Query 5](stage%202/resources/5%20query.png) | ![Result 5](stage%202/resources/5.5%20query.png) |
+| 6  | Natural births by experienced doctors (≥2 yrs) | ![Query 6](stage%202/resources/6%20query.png) | ![Result 6](stage%202/resources/6.6%20query.png) |
+| 7  | Male cesarean babies (mothers aged 30+, 1 child) | ![Query 7](stage%202/resources/7%20query) | ![Result 7](stage%202/resources/7.7%20query.png) |
+| 8  | Nurses/mothers in Room 10 (May) | ![Query 8](stage%202/resources/8%20query.png) | ![Result 8](stage%202/resources/8.8%20query.png) |
 
 *(Add rows for additional queries as needed.)*  
 
