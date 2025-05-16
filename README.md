@@ -84,117 +84,106 @@ Additional data was imported using text files to populate the database tables:
 #### Data restoration process:
 ![Data Restoration](stage%201/resources/datarestore.png)
 
-<<<<<<< HEAD
-## Phase 2: Quaries
+## Phase 2: Integration
 ### Database Updates & Constraints
 
+#### Data Updates
 
-### Updates and Enhancements  
-This phase refines database logic, implements constraints, and adds advanced querying capabilities.  
+The second phase involved several important data updates to optimize the database:
 
-#### 1. **Data Updates**  
-- **Release Date Adjustment**: Discharge dates now auto-set to **3 days after birth**. 
-  - *The Code*:
-    ![The Code](stage%202/resources/update%203%20days%20after%20birth.png)
-  - *Before*:  
-    ![Unsorted Dates](stage%202/resources/before%20update.png)  
-  - *After*:  
-    ![Updated Dates](stage%202/resources/after.png)  
+1. **Discharge Date Standardization**  
+   All discharge dates were updated to be exactly 3 days after the birth date, ensuring consistency in patient stays.
+   
+   ![Discharge Date Update](stage%202/resources/discharge_date_update.png)
 
-- **Room Occupancy Logic**: Rooms marked "occupied" only if **two mothers** are assigned.  
-  - *The Code*:
-    ![The Code](stage%202/resources/occupied%20code.png)
-  - *Before*:  
-    ![Room Before](stage%202/resources/before%20occupied.png)  
-  - *After*:  
-    ![Room After](stage%202/resources/after%20occupied.png)  
+2. **Room Occupancy Status**  
+   Room status was updated to mark rooms as "Occupied" only when they contain two mothers, improving resource allocation.
+   
+   Before update:
+   ![Room Status Before](stage%202/resources/room_status_before.png)
+   
+   After update:
+   ![Room Status After](stage%202/resources/room_status_after.png)
 
-- **Mother Data Correction**: Updated phone number for Mother ID 34.
-  - *The Code*:
-    ![The Code](stage%202/resources/34%20maternity.png)  
-  - *Before*:  
-    ![Phone Before](stage%202/resources/before%2034.png)  
-  - *After*:  
-    ![Phone After](stage%202/resources/after%2034.png)  
+3. **Patient Contact Information**  
+   Updated contact information for specific patients when necessary, such as phone number updates.
+   
+   Before update:
+   ![Contact Before](stage%202/resources/contact_before.png)
+   
+   After update:
+   ![Contact After](stage%202/resources/contact_after.png)
 
----
+#### Table Constraints
 
-#### 2. **Table Constraints**  
-1. **Default Room Status**: New rooms default to "available".  
-   ![Constraint 1](stage%202/resources/default%20to%20clear%20room.png)  
-2. **Mother Age Validation**: Blocks invalid ages (e.g., <18 or >50).  
-   ![Constraint 2](stage%202/resources/constrain%20mother%20age.png)  
-3. **NULL Prevention**: Ensures baby records have no NULL values.  
-   ![Constraint 3](stage%202/resources/constraint%20beby%20null.png)  
+To maintain data integrity, the following constraints were implemented:
 
----
+1. **Default Room Status**  
+   Default constraint that automatically marks new rooms as "Available" when added to the database.
+   
+   ![Default Room Status](stage%202/resources/default_room_status.png)
 
-#### 3. **Data Deletions**  
-1. **Purge Old Records**: Deleted births before `2024-04-07`.
-   - *The Code*:
-    ![The Code](stage%202/resources/delete%20date.png)  
-   - *Before*:  
-     ![Before Deletion](stage%202/resources/before%20delete%20date.png)  
-   - *After*:  
-     ![After Deletion](stage%202/resources/after%20delete%20date.png)  
+2. **Mother Age Validation**  
+   Check constraint that validates the mother's age is within a reasonable range when new records are inserted.
+   
+   ![Age Validation](stage%202/resources/age_validation.png)
 
-2. **Remove Inexperienced Doctors**: Deleted doctors with **0 years** of cesarean experience.
-   - *The Code*:
-    ![The Code](stage%202/resources/0%20seniority.png)  
-   - *Before*:  
-     ![Doctors Before](stage%202/resources/before%20seniority.png)  
-   - *After*:  
-     ![Doctors After](stage%202/resources/after%20seniority.png)  
+3. **Baby Data Validation**  
+   Not-null constraint ensuring all required baby information fields are populated.
+   
+   ![Baby Data Validation](stage%202/resources/baby_validation.png)
 
-3. **Unassigned Nurses**: Removed nurses not linked to any room.
-   - *The Code*:
-    ![The Code](stage%202/resources/nurses%20no%20room.png)  
-   - *Before*:  
-     ![Nurses Before](stage%202/resources/before%20nurses.png)  
-   - *After*:  
-     ![Nurses After](stage%202/resources/after%20nurses.png)  
+### Data Cleanup Operations
 
----
+Several cleanup operations were performed to maintain database quality:
 
-#### 4. **Advanced Queries**  
-| #  | Query Purpose | Screenshot | Output |
-|----|---------------|------------|--------|
-| 1  | Rooms with 1 mother + night-shift nurse | ![Query 1](stage%202/resources/1%20query.png) | ![Result 1](stage%202/resources/1.1%20query.png) |
-| 2  | Mothers with multiple births on same date | ![Query 2](stage%202/resources/2%20query.png) | ![Result 2](stage%202/resources/2.2%20query.png) |
-| 3  | Avg baby weight per birth type (last year) | ![Query 3](stage%202/resources/3%20query.png) | ![Result 3](stage%202/resources/3.3%20query.png) |
-| 4  | Nurses caring for ~2 babies/room | ![Query 4](stage%202/resources/4%20query.png) | ![Result 4](stage%202/resources/4.4%20query.png) |
-| 5  | Monthly birth rate averages | ![Query 5](stage%202/resources/5%20query.png) | ![Result 5](stage%202/resources/5.5%20query.png) |
-| 6  | Natural births by experienced doctors (≥2 yrs) | ![Query 6](stage%202/resources/6%20query.png) | ![Result 6](stage%202/resources/6.6%20query.png) |
-| 7  | Male cesarean babies (mothers aged 30+, 1 child) | ![Query 7](stage%202/resources/7%20query.png) | ![Result 7](stage%202/resources/7.7%20quey.png) |
-| 8  | Nurses/mothers in Room 10 (May) | ![Query 8](stage%202/resources/8%20query.png) | ![Result 8](stage%202/resources/8.8%20query.png) |
+1. **Historical Record Removal**  
+   Deleted birth records prior to April 7, 2024 to maintain relevant data only.
+   
+   Before deletion:
+   ![Historical Records Before](stage%202/resources/historical_before.png)
+   
+   After deletion:
+   ![Historical Records After](stage%202/resources/historical_after.png)
 
-*(Add rows for additional queries as needed.)*  
+2. **Staff Qualification Filtering**  
+   Removed doctors with zero years of experience in cesarean specialization.
+   
+   Before filtering:
+   ![Doctors Before](stage%202/resources/doctors_before.png)
+   
+   After filtering:
+   ![Doctors After](stage%202/resources/doctors_after.png)
 
----
+3. **Unassigned Staff Cleanup**  
+   Deleted nurse records not associated with any room to maintain data relevance.
+   
+   Before cleanup:
+   ![Nurses Before](stage%202/resources/nurses_before.png)
+   
+   After cleanup:
+   ![Nurses After](stage%202/resources/nurses_after.png)
 
-#### 5. **Transaction Management**  
-- **Rollback Example**:
-  - *The Code*:
-    ![The Code](stage%202/resources/rollback1.png)  
-  - *Before*: ![Pre-Rollback](stage%202/resources/rollback2.png)
-  - *Update*: ![while-Rollback](stage%202/resources/rollback3.png)  
-  - *After*: ![Post-Rollback](stage%202/resources/rollback4.png)  
+### Advanced Queries
 
-- **Commit Example**:  
-  - *The Code*:
-    ![The Code](stage%202/resources/commit.png)  
-  - *Before*: ![Pre-commit](stage%202/resources/commit1.png)  
-  - *After*: ![Post-commit](stage%202/resources/commit2.png)
-  - *After Commit*: ![after-commit](stage%202/resources/commit3.png)  
+The database supports various analytical queries to extract valuable insights:
 
----
+1. **Room and Night Shift Nurse Assignment**  
+   Query returning rooms with single mothers and their assigned night shift nurses.
+   
+   ![Room-Nurse Query](stage%202/resources/room_nurse_query.png)
+   
+   Results:
+   ![Room-Nurse Results](stage%202/resources/room_nurse_results.png)
 
-### Next Steps  
-- **Phase 3**: UI development and performance tuning.  
+2. **Multiple Birth Analysis**  
+   Query identifying mothers who delivered more than one baby on the same date and their delivery types.
+   
+   ![Multiple Births Query](stage%202/resources/multiple_births_query.png)
+   
+   Results:
+   ![Multiple Births Results](stage%202/resources/multiple_births_results.png)
 
----
-
-<<<<<<< HEAD
 3. **Birth Type and Baby Weight Correlation**  
    Query calculating average baby weight by delivery type over the past year.
    
@@ -277,5 +266,4 @@ The Maternity Ward Database provides a comprehensive solution for managing hospi
 
 The implementation demonstrates best practices in database design, including proper relationship modeling, constraint implementation, transaction management, and analytical query capabilities. This ensures data integrity while providing valuable insights to improve hospital operations and patient care.
 
-## Phase 3: Integration
-
+## Future Enhancements
