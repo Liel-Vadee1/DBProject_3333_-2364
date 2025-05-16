@@ -171,7 +171,7 @@ The database supports various analytical queries to extract valuable insights:
 1. **Room and Night Shift Nurse Assignment**  
    Query returning rooms with single mothers and their assigned night shift nurses.
    
-   ![Room-Nurse Query](stage%202/resources/room_nurse_query.png)
+   ![Room-Nurse Query](stage%202/resources/1%20query.png)
    
    Results:
    ![Room-Nurse Results](stage%202/resources/room_nurse_results.png)
