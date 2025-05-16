@@ -126,7 +126,7 @@ To maintain data integrity, the following constraints were implemented:
 2. **Mother Age Validation**  
    Check constraint that validates the mother's age is within a reasonable range when new records are inserted.
    
-   ![Age Validation](stage%202/resources/age_validation.png)
+   ![Age Validation](stage%202/resources/mother_age_validation.png)
 
 3. **Baby Data Validation**  
    Not-null constraint ensuring all required baby information fields are populated.
@@ -174,63 +174,63 @@ The database supports various analytical queries to extract valuable insights:
    ![Room-Nurse Query](stage%202/resources/1%20query.png)
    
    Results:
-   ![Room-Nurse Results](stage%202/resources/room_nurse_results.png)
+   ![Room-Nurse Results](stage%202/resources/1.1%20query.png)
 
 2. **Multiple Birth Analysis**  
    Query identifying mothers who delivered more than one baby on the same date and their delivery types.
    
-   ![Multiple Births Query](stage%202/resources/multiple_births_query.png)
+   ![Multiple Births Query](stage%202/resources/2%20query.png)
    
    Results:
-   ![Multiple Births Results](stage%202/resources/multiple_births_results.png)
+   ![Multiple Births Results](stage%202/resources/2.2%20query.png)
 
 3. **Birth Type and Baby Weight Correlation**  
    Query calculating average baby weight by delivery type over the past year.
    
-   ![Weight Analysis Query](stage%202/resources/weight_analysis_query.png)
+   ![Weight Analysis Query](stage%202/resources/3%20query.png)
    
    Results:
-   ![Weight Analysis Results](stage%202/resources/weight_analysis_results.png)
+   ![Weight Analysis Results](stage%202/resources/3.3%20query.png)
 
 4. **Nurse Workload Analysis**  
    Query identifying nurses who cared for exactly 2 babies per room on average.
    
-   ![Nurse Workload Query](stage%202/resources/nurse_workload_query.png)
+   ![Nurse Workload Query](stage%202/resources/4%20query.png)
    
    Results:
-   ![Nurse Workload Results](stage%202/resources/nurse_workload_results.png)
+   ![Nurse Workload Results](stage%202/resources/4.4%20query.png)
 
 5. **Monthly Birth Statistics**  
    Query calculating average births per month throughout the year.
    
-   ![Monthly Stats Query](stage%202/resources/monthly_stats_query.png)
+   ![Monthly Stats Query](stage%202/resources/5%20query.png)
    
    Results:
-   ![Monthly Stats Results](stage%202/resources/monthly_stats_results.png)
+   ![Monthly Stats Results](stage%202/resources/5.5%20query.png)
 
 6. **Natural Birth and Doctor Experience**  
    Query listing natural births and their attending doctors, excluding those with less than two years' experience.
    
-   ![Natural Birth Query](stage%202/resources/natural_birth_query.png)
+   ![Natural Birth Query](stage%202/resources/6%20query.png)
    
    Results:
-   ![Natural Birth Results](stage%202/resources/natural_birth_results.png)
+   ![Natural Birth Results](stage%202/resources/6.6%20query.png)
 
 7. **Comprehensive Birth Analysis**  
    Complex query returning baby information, mother details, birth type, and baby count for mothers over 30 with male babies delivered by cesarean section.
    
-   ![Comprehensive Query](stage%202/resources/comprehensive_query.png)
+   ![Comprehensive Query](stage%202/resources/7%20query.png)
    
    Results:
-   ![Comprehensive Results](stage%202/resources/comprehensive_results.png)
+   ![Comprehensive Results](stage%202/resources/7.7%20query.png)
 
 8. **Room Occupancy by Shift**  
    Query showing nurse names, shifts, and number of mothers in room 10 during May.
    
-   ![Room Occupancy Query](stage%202/resources/room_occupancy_query.png)
+   ![Room Occupancy Query](stage%202/resources/8%20query.png)
    
    Results:
-   ![Room Occupancy Results](stage%202/resources/room_occupancy_results.png)
+   ![Room Occupancy Results](stage%202/resources/8.8%20query.png)
 
 ### Transaction Management
 
@@ -240,25 +240,25 @@ The database implements transaction control to ensure data integrity:
    Capability to revert changes when necessary, preserving data integrity.
    
    Initial state:
-   ![Initial State](stage%202/resources/initial_state.png)
+   ![Initial State](stage%202/resources/rollback2.png)
    
    After update:
-   ![Updated State](stage%202/resources/updated_state.png)
+   ![Updated State](stage%202/resources/rollback3.png)
    
    After rollback:
-   ![Rollback State](stage%202/resources/rollback_state.png)
+   ![Rollback State](stage%202/resources/rollback4.png)
 
 2. **Commit Operations**  
    Finalizing changes to make them permanent in the database.
    
    Before update:
-   ![Pre-Commit State](stage%202/resources/precommit_state.png)
+   ![Pre-Commit State](stage%202/resources/commit1.png)
    
    After update:
-   ![Post-Update State](stage%202/resources/postupdate_state.png)
+   ![Post-Update State](stage%202/resources/commit2.png)
    
    After commit:
-   ![Post-Commit State](stage%202/resources/postcommit_state.png)
+   ![Post-Commit State](stage%202/resources/commit3.png)
 
 ## Conclusion
 
