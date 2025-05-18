@@ -84,7 +84,7 @@ Additional data was imported using text files to populate the database tables:
 #### Data restoration process:
 ![Data Restoration](stage%201/resources/datarestore.png)
 
-## Phase 2: Integration
+## Phase 2: Quaries
 ### Database Updates & Constraints
 
 #### Data Updates
@@ -266,4 +266,97 @@ The Maternity Ward Database provides a comprehensive solution for managing hospi
 
 The implementation demonstrates best practices in database design, including proper relationship modeling, constraint implementation, transaction management, and analytical query capabilities. This ensures data integrity while providing valuable insights to improve hospital operations and patient care.
 
-## Future Enhancements
+## Phase 3: Integration
+### Integrations with 2 different data-bases
+At this stage, we have experimented integrating our system.
+First, we got a pair's other data-base and according to the tables, we have created their ERD:
+1. CancerPatient
+Primary Key: patient_id
+Foreign Keys:-
+
+2. Department
+Primary Key: department_id
+Foreign Keys: -
+
+3. OncologyStaff
+Primary Key: staff_id
+Foreign Keys: department_id → Department(department_id)
+
+4. Diagnosis
+Primary Key: diagnosis_id
+Foreign Keys: patient_id → CancerPatient(patient_id)
+staff_id → OncologyStaff(staff_id)
+
+5. TreatmentPlan
+Primary Key: plan_id
+Foreign Keys: diagnosis_id → Diagnosis(diagnosis_id)
+
+6. TreatmentSession
+Primary Key: session_id
+Foreign Keys: plan_id → TreatmentPlan(plan_id)
+staff_id → OncologyStaff(staff_id)
+
+7. SideEffectReport
+Primary Key: report_id
+Foreign Keys: session_id → TreatmentSession(session_id)
+staff_id → OncologyStaff(staff_id) 
+
+Based on the conclusions of the tables we created the ERD:
+![ERD](stage%203/Images/New_ERD.png)
+
+DSD:
+   ![DSD](stage%203/Images/New_DSD.png)
+
+Integrating the two databases into one combined database:
+
+After we uploaded their data-base to ours, We made their tables as foreign tables in our database.
+Then, we operated design actions in order to integrat both of the data-bases.
+Based on the "Department" table, their data-base, we connected "Department" table primary key as a foreign key in "Doctor"&"Nurse" tables, in our data-base.
+As well as the "department_id" = 7 , represents "maternity department":
+Doctor table:
+   ![Doctor](stage%203/Reasources/update_doctor_table.png)
+Nurse table:
+   ![Nurse](stage%203/Reasources/update_nurse_table.png)
+
+Combinated ERD:
+   ![ERD](stage%203/Images/Combination_ERD.png)
+
+Combinated DSD:
+   ![DSD](stage%203/Images/Combination_DSD.png)
+
+### Views
+1. **Create first view** 
+First:
+   ![First](stage%203/Reasources/create_my_view.png)
+
+A. First Query of the view
+Query 1:
+   ![Query_1](stage%203/Reasources/my_view_query_1.png)
+
+B. Second Query of the view
+Query 2:
+   ![Query_2](stage%203/Reasources/my_view_query_2.png)
+
+2. **Create second view** 
+Second:
+   ![Second](stage%203/Reasources/create_their_view.png)
+
+A. First Query of the view
+Query 1:
+   ![Query_1](stage%203/Reasources/their_view_query_1.png)
+
+B. Second Query of the view
+Query 2:
+   ![Query_2](stage%203/Reasources/their_view_query_2.png)
+
+
+## Conclusion
+In this phase, we successfully integrated our database with another system's medical database. We began by analyzing and modeling their schema, creating a comprehensive ERD and DSD based on their tables and relationships. Following this, we imported their database and defined their tables as foreign tables within our own system.
+
+Using shared attributes like `department_id`, we established meaningful connections between our tables (e.g., Doctor, Nurse) and theirs (e.g., Department). This enabled seamless integration and ensured relational consistency.
+
+Finally, we created combined ERD and DSD models to reflect the merged structure and designed two sets of views—one from our perspective and one from theirs—to enable efficient querying and data analysis across both datasets. This phase laid a solid foundation for a unified and interoperable system.
+
+
+
+
