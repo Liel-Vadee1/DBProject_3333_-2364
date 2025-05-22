@@ -5,13 +5,33 @@ Hospital Maternity Department Management System
 
 ## Table of Contents  
 - [Phase 1: Design and Build the Database](#phase-1-design-and-build-the-database)  
-  - [Introduction](#introduction)  
-  - [ERD (Entity-Relationship Diagram)](#erd-entity-relationship-diagram)  
-  - [DSD (Data Structure Diagram)](#dsd-data-structure-diagram)  
-  - [SQL Scripts](#sql-scripts)  
-  - [Data](#data)
-  - [Backup](#backup)  
-- [Phase 2: Integration](#phase-2-integration)  
+   - [Introduction](#introduction)  
+   - [ERD (Entity-Relationship Diagram)](#erd-entity-relationship-diagram)  
+   - [DSD (Data Structure Diagram)](#dsd-data-structure-diagram)  
+   - [SQL Scripts](#sql-scripts)  
+   - [Data](#data)
+   - [Backup](#backup)  
+- [Phase 2: Integration](#phase-2-Queries)  
+   -[Database Updates & Constraints](#database-updates--constraints)
+   -[Data Updates](#data-updates)
+   -[Table Constraints](#table-constraints)
+   -[Data Cleanup Operations](#data-cleanup-operations)
+   -[Advanced Queries](#advanced-queries)
+   -[Transaction Management](#transaction-management)
+   -[Conclusion](#conclusion-2)
+- [Phase 3: Integration](#phase-3-Integration)
+   -[Integrations with 2 different data-bases](#integrations-with-2-different-data-bases)
+   -[New ERD](#new-erd)
+   -[New DSD](#new-dsd)
+   -[Combination ERD](#combination-erd)
+   -[Combination DSD](#combination-dsd)
+   -[Views](#views)
+   -[Conclusion](#conclusion-3)
+- [Phase 4: Programs](#phase-4-programs)
+   -[Programs and Triggers on the Data-base](#programs-and-triggers-on-the-data-base)
+   -[Programs](#programs)
+   -[Triggers](#triggers)
+   -[Conclusion](#conclusion-4)
 
 ## Phase 1: Design and Build the Database  
 
@@ -260,7 +280,7 @@ The database implements transaction control to ensure data integrity:
    After commit:
    ![Post-Commit State](stage%202/resources/commit3.png)
 
-## Conclusion
+## Conclusion 2
 
 The Maternity Ward Database provides a comprehensive solution for managing hospital maternity departments. Through a well-designed data structure, targeted constraints, and powerful analytical capabilities, the system offers an efficient way to manage births, track patient information, coordinate medical staff, and optimize resource allocation.
 
@@ -303,9 +323,11 @@ Primary Key: report_id
 Foreign Keys: session_id → TreatmentSession(session_id)
 staff_id → OncologyStaff(staff_id) 
 
+### New ERD
 Based on the conclusions of the tables we created the ERD:
 ![ERD](stage%203/Images/New_ERD.png)
 
+### New DSD
 DSD:
    ![DSD](stage%203/Images/New_DSD.png)
 
@@ -320,14 +342,18 @@ Doctor table:
 Nurse table:
    ![Nurse](stage%203/Reasources/update_nurse_table.png)
 
+### Combinated ERD
 Combinated ERD:
    ![ERD](stage%203/Images/Combination_ERD.png)
 
+### Combinated DSD
 Combinated DSD:
    ![DSD](stage%203/Images/Combination_DSD.png)
 
 ### Views
+
 1. **Create first view** 
+
 First:
    ![First](stage%203/Reasources/create_my_view.png)
 
@@ -340,6 +366,7 @@ Query 2:
    ![Query_2](stage%203/Reasources/my_view_query_2.png)
 
 2. **Create second view** 
+
 Second:
    ![Second](stage%203/Reasources/create_their_view.png)
 
@@ -352,7 +379,8 @@ Query 2:
    ![Query_2](stage%203/Reasources/their_view_query_2.png)
 
 
-## Conclusion
+## Conclusion 3
+
 In this phase, we successfully integrated our database with another system's medical database. We began by analyzing and modeling their schema, creating a comprehensive ERD and DSD based on their tables and relationships. Following this, we imported their database and defined their tables as foreign tables within our own system.
 
 Using shared attributes like `department_id`, we established meaningful connections between our tables (e.g., Doctor, Nurse) and theirs (e.g., Department). This enabled seamless integration and ensured relational consistency.
@@ -367,72 +395,93 @@ This stage includes programs of varying complexity based on the data,
 and appropriate triggers for database integrity.
 
 ### Programs
+
 1. **Program 1**
 The program checks who the mothers who gave birth by cesarean section are, and transfers them to a room on the 4th or 5th floor randomly depending on the available room.
+
 
 Function - Draws a free room on the appropriate floors and returns the room number to the procedure:
    ![Function](stage%204/program1/resources1/function1.jpg)
 
+
 Procedure - receives the maternity's id and updates the maternity's table with the appropriate room id that it receives from the function:
    ![Procedure](stage%204/program1/resources1/procedure1.jpg)
+
 
 Main program - checks which mothers gave birth by cesarean section and sends the maternity's id to the procedure, and returns an updated table:
    ![Main program1](stage%204/program1/resources1/program1.1.jpg)
    ![Main program2](stage%204/program1/resources1/program1.2.jpg)
 
+
 Execution of the program:
    ![Execution](stage%204/program1/resources1/exectution1.jpg)
+
 
 Output of the program:
    ![Output](stage%204/program1/resources1/output1.jpg)
 
+
 1. **Program 2**
 The program selects a random department: if it's a maternity ward, it updates the information about doctors and nurses and returns a summary of births in the past year. otherwise, it returns a summary of data on cancer patients, including types of cancer, number of patients, average age, and planned treatment plans.
+
 
 Function - Draws a department id and returns the id to the main program:
    ![Function](stage%204/program2/resources2/function2.png)
 
+
 Procedure - Updates each doctor's years of experience by another year, and if there is an identical nurse ID in the "OncologyStaff" table, updates the nurse's name according to the "OncologyStaff" table:
    ![Procedure](stage%204/program2/resources2/procedure2.png)
+
 
 Main program - Receives a department id, if the id is the maternity department then updates the nurse and doctor data in the procedure and returns an updated table. otherwise, returns a table of information about the department:
    ![Main program1](stage%204/program2/resources2/program2.1.png)
    ![Main program2](stage%204/program2/resources2/program2.2.png)
 
+
 Execution of the program:
    ![Execution](stage%204/program2/resources2/exectution2.png)
+
 
 Output of the program:
    ![Output](stage%204/program2/resources2/output2.png)
 
 
 ### Triggers
+
 1. **Trigger 1**
 The trigger runs a function immediately after adding a new birth record in the birth_record table, and within the function it retrieves one doctor who specializes in the type of birth entered and automatically links him to the birth record in the midwife table.
 
+
 Function for Trigger:
-   ![Function_Trigger](stage%204/trigger1/FunctionFotTrigger1.jpg)
+   ![Function_Trigger](stage%204/triggers/trigger1/FunctionFotTrigger1.jpg)
+
 
 Create the trigger:
-   ![Create_trigger](stage%204/trigger1/CreateTrigger1.jpg)
+   ![Create_trigger](stage%204/triggers/trigger1/CreateTrigger1.jpg)
+
 
 Check output:
-   ![Output](stage%204/trigger1/CheckOutput1.jpg)
+   ![Output](stage%204/triggers/trigger1/CheckOutput1.jpg)
+
 
 1. **Trigger 2**
 The trigger operates when a nurse is removed from a room assignment, and automatically searches for another nurse with the same shift who is not assigned to that room. If one is found, it assigns her to that room instead of the deleted nurse.
 
+
 Function for Trigger:
-   ![Function_Trigger](stage%204/trigger2/FunctionFotTrigger2.jpg)
+   ![Function_Trigger](stage%204/triggers/trigger2/FunctionFotTrigger2.jpg)
+
 
 Create the trigger:
-   ![Create_trigger](stage%204/trigger2/CreateTrigger2.jpg)
+   ![Create_trigger](stage%204/triggers/trigger2/CreateTrigger2.jpg)
+
 
 Check output:
-   ![Output](stage%204/trigger2/CheckOutput2.jpg)
+   ![Output](stage%204/triggers/trigger2/CheckOutput2.jpg)
 
 
-## Conclusion
+## Conclusion 4
+
 At this stage, we implemented advanced logic and automation within the database to improve operational efficiency and maintain data integrity. Two comprehensive programs were developed to manage room assignments for cesarean deliveries and to handle staff updates and ward treatments. These programs demonstrate the integration of functions and procedures to support real-time decision-making and automated data handling.
 
 In addition, we designed and implemented two key triggers to maintain database consistency and automate staff assignment. A trigger that ensures that each birth registration is immediately associated with a specialist, and a trigger that ensures that room assignments remain covered when a nurse is removed, thus ensuring continuous patient care.
