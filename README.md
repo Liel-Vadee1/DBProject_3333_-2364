@@ -268,8 +268,10 @@ The implementation demonstrates best practices in database design, including pro
 
 ## Phase 3: Integration
 ### Integrations with 2 different data-bases
+
 At this stage, we have experimented integrating our system.
 First, we got a pair's other data-base and according to the tables, we have created their ERD:
+
 1. CancerPatient
 Primary Key: patient_id
 Foreign Keys:-
@@ -358,5 +360,82 @@ Using shared attributes like `department_id`, we established meaningful connecti
 Finally, we created combined ERD and DSD models to reflect the merged structure and designed two sets of views—one from our perspective and one from theirs—to enable efficient querying and data analysis across both datasets. This phase laid a solid foundation for a unified and interoperable system.
 
 
+## Phase 4: Programs
+### Programs and triggers on the data-base
 
+This stage includes programs of varying complexity based on the data, 
+and appropriate triggers for database integrity.
+
+### Programs
+1. **Program 1**
+The program checks who the mothers who gave birth by cesarean section are, and transfers them to a room on the 4th or 5th floor randomly depending on the available room.
+
+Function - Draws a free room on the appropriate floors and returns the room number to the procedure:
+   ![Function](stage%204/program1/resources1/function1.png)
+
+Procedure - receives the maternity's id and updates the maternity's table with the appropriate room id that it receives from the function:
+   ![Procedure](stage%204/program1/resources1/procedure1.png)
+
+Main program - checks which mothers gave birth by cesarean section and sends the maternity's id to the procedure, and returns an updated table:
+   ![Main program1](stage%204/program1/resources1/program1.1.png)
+   ![Main program2](stage%204/program1/resources1/program1.2.png)
+
+Execution of the program:
+   ![Execution](stage%204/program1/resources1/exectution1.png)
+
+Output of the program:
+   ![Output](stage%204/program1/resources1/output1.png)
+
+1. **Program 2**
+The program selects a random department: if it's a maternity ward, it updates the information about doctors and nurses and returns a summary of births in the past year. otherwise, it returns a summary of data on cancer patients, including types of cancer, number of patients, average age, and planned treatment plans.
+
+Function - Draws a department id and returns the id to the main program:
+   ![Function](stage%204/program2/resources2/function2.png)
+
+Procedure - Updates each doctor's years of experience by another year, and if there is an identical nurse ID in the "OncologyStaff" table, updates the nurse's name according to the "OncologyStaff" table:
+   ![Procedure](stage%204/program2/resources2/procedure2.png)
+
+Main program - Receives a department id, if the id is the maternity department then updates the nurse and doctor data in the procedure and returns an updated table. otherwise, returns a table of information about the department:
+   ![Main program1](stage%204/program2/resources2/program2.1.png)
+   ![Main program2](stage%204/program2/resources2/program2.2.png)
+
+Execution of the program:
+   ![Execution](stage%204/program2/resources2/exectution2.png)
+
+Output of the program:
+   ![Output](stage%204/program2/resources2/output2.png)
+
+
+### Triggers
+1. **Trigger 1**
+The trigger runs a function immediately after adding a new birth record in the birth_record table, and within the function it retrieves one doctor who specializes in the type of birth entered and automatically links him to the birth record in the midwife table.
+
+Function for Trigger:
+   ![Function_Trigger](stage%204/trigger1/FunctionFotTrigger1.png)
+
+Create the trigger:
+   ![Create_trigger](stage%204/trigger1/CreateTrigger1.png)
+
+Check output:
+   ![Output](stage%204/trigger1/CheckOutput1.png)
+
+1. **Trigger 2**
+The trigger operates when a nurse is removed from a room assignment, and automatically searches for another nurse with the same shift who is not assigned to that room. If one is found, it assigns her to that room instead of the deleted nurse.
+
+Function for Trigger:
+   ![Function_Trigger](stage%204/trigger2/FunctionFotTrigger2.png)
+
+Create the trigger:
+   ![Create_trigger](stage%204/trigger2/CreateTrigger2.png)
+
+Check output:
+   ![Output](stage%204/trigger2/CheckOutput2.png)
+
+
+## Conclusion
+At this stage, we implemented advanced logic and automation within the database to improve operational efficiency and maintain data integrity. Two comprehensive programs were developed to manage room assignments for cesarean deliveries and to handle staff updates and ward treatments. These programs demonstrate the integration of functions and procedures to support real-time decision-making and automated data handling.
+
+In addition, we designed and implemented two key triggers to maintain database consistency and automate staff assignment. A trigger that ensures that each birth registration is immediately associated with a specialist, and a trigger that ensures that room assignments remain covered when a nurse is removed, thus ensuring continuous patient care.
+
+These automated processes significantly reduce the need for manual intervention, minimize errors, and ensure that the system dynamically adapts to real-world scenarios, laying a strong foundation for future scalability and reliability of the hospital management system.
 
