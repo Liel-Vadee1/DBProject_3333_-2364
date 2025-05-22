@@ -439,11 +439,11 @@ Main program - Receives a department id, if the id is the maternity department t
 
 
 Execution of the program:
-   ![Execution](stage%204/program2/resources2/exectution2.png)
+   ![Execution](stage%204/program2/resources2/execution2.png)
 
 
 Output of the program:
-   ![Output](stage%204/program2/resources2/output2.png)
+   ![Output](stage%204/program2/resources2/Output2.png)
 
 
 ### Triggers
@@ -453,7 +453,7 @@ The trigger runs a function immediately after adding a new birth record in the b
 
 
 Function for Trigger:
-   ![Function_Trigger](stage%204/triggers/trigger1/FunctionFotTrigger1.jpg)
+   ![Function_Trigger](stage%204/triggers/trigger1/FunctionForTrigger1.jpg)
 
 
 Create the trigger:
@@ -469,7 +469,7 @@ The trigger operates when a nurse is removed from a room assignment, and automat
 
 
 Function for Trigger:
-   ![Function_Trigger](stage%204/triggers/trigger2/FunctionFotTrigger2.jpg)
+   ![Function_Trigger](stage%204/triggers/trigger2/FunctionForTrigger2.jpg)
 
 
 Create the trigger:
