@@ -371,20 +371,20 @@ and appropriate triggers for database integrity.
 The program checks who the mothers who gave birth by cesarean section are, and transfers them to a room on the 4th or 5th floor randomly depending on the available room.
 
 Function - Draws a free room on the appropriate floors and returns the room number to the procedure:
-   ![Function](stage%204/program1/resources1/function1.png)
+   ![Function](stage%204/program1/resources1/function1.jpg)
 
 Procedure - receives the maternity's id and updates the maternity's table with the appropriate room id that it receives from the function:
-   ![Procedure](stage%204/program1/resources1/procedure1.png)
+   ![Procedure](stage%204/program1/resources1/procedure1.jpg)
 
 Main program - checks which mothers gave birth by cesarean section and sends the maternity's id to the procedure, and returns an updated table:
-   ![Main program1](stage%204/program1/resources1/program1.1.png)
-   ![Main program2](stage%204/program1/resources1/program1.2.png)
+   ![Main program1](stage%204/program1/resources1/program1.1.jpg)
+   ![Main program2](stage%204/program1/resources1/program1.2.jpg)
 
 Execution of the program:
-   ![Execution](stage%204/program1/resources1/exectution1.png)
+   ![Execution](stage%204/program1/resources1/exectution1.jpg)
 
 Output of the program:
-   ![Output](stage%204/program1/resources1/output1.png)
+   ![Output](stage%204/program1/resources1/output1.jpg)
 
 1. **Program 2**
 The program selects a random department: if it's a maternity ward, it updates the information about doctors and nurses and returns a summary of births in the past year. otherwise, it returns a summary of data on cancer patients, including types of cancer, number of patients, average age, and planned treatment plans.
@@ -411,25 +411,25 @@ Output of the program:
 The trigger runs a function immediately after adding a new birth record in the birth_record table, and within the function it retrieves one doctor who specializes in the type of birth entered and automatically links him to the birth record in the midwife table.
 
 Function for Trigger:
-   ![Function_Trigger](stage%204/trigger1/FunctionFotTrigger1.png)
+   ![Function_Trigger](stage%204/trigger1/FunctionFotTrigger1.jpg)
 
 Create the trigger:
-   ![Create_trigger](stage%204/trigger1/CreateTrigger1.png)
+   ![Create_trigger](stage%204/trigger1/CreateTrigger1.jpg)
 
 Check output:
-   ![Output](stage%204/trigger1/CheckOutput1.png)
+   ![Output](stage%204/trigger1/CheckOutput1.jpg)
 
 1. **Trigger 2**
 The trigger operates when a nurse is removed from a room assignment, and automatically searches for another nurse with the same shift who is not assigned to that room. If one is found, it assigns her to that room instead of the deleted nurse.
 
 Function for Trigger:
-   ![Function_Trigger](stage%204/trigger2/FunctionFotTrigger2.png)
+   ![Function_Trigger](stage%204/trigger2/FunctionFotTrigger2.jpg)
 
 Create the trigger:
-   ![Create_trigger](stage%204/trigger2/CreateTrigger2.png)
+   ![Create_trigger](stage%204/trigger2/CreateTrigger2.jpg)
 
 Check output:
-   ![Output](stage%204/trigger2/CheckOutput2.png)
+   ![Output](stage%204/trigger2/CheckOutput2.jpg)
 
 
 ## Conclusion
