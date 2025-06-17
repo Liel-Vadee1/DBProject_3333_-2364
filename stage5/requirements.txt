@@ -1,0 +1,3 @@
+psycopg2-binary==2.9.9
+tkinter
+pillow==10.1.0
