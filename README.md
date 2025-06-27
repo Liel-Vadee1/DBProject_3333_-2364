@@ -549,7 +549,7 @@ Allows users to perform the following operations:
 1. **Add New Data**
 
 Insert new maternity, baby, or birth record:
-   ![add_data](stage%205/images/add_new.png)
+   ![add_data](stage%205/images/addnew.png)
 
 2. **Update Data**
 
