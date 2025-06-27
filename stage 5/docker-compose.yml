@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: linoy3055
+      POSTGRES_PASSWORD: linoy3055
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: linoy.y02@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: linoy3055
+    ports:
+      - "5050:80"

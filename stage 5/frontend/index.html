@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternity Ward Management System</title>
+    <link rel="stylesheet" href="style.css?v=2">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Maternity Ward Management System</h1>
+        
+        <div class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('maternity')">maternity</button>
+            <button class="tab-button" onclick="showTab('baby')">baby</button>
+            <button class="tab-button" onclick="showTab(event, 'birth_record')">birth_record</button>
+            <button class="tab-button" onclick="showTab('reports')">reports</button>
+            <button class="tab-button" onclick="showTab(event, 'procedures_functions')">procedures & functions</button>
+        </div>
+
+        <!-- Maternity Tab -->
+        <div id="maternity" class="tab-content active">
+            <h2>Maternity Management</h2>
+            <form id="maternityForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="motherName">name:</label>
+                        <input type="text" id="motherName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherAge">age:</label>
+                        <input type="number" id="motherAge" min="15" max="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherPhone">phone:</label>
+                        <input type="tel" id="motherPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomSelect">room:</label>
+                        <select id="roomSelect" required>
+                            <option value="450">select room</option>
+                        </select>
+                    </div>
+                </div>
+<div style="display: flex; align-items: stretch; gap: 10px; margin-bottom: 10px;">
+    <button type="submit" class="btn btn-primary" style="height: 40px;">new maternity</button>
+    <input type="text" id="maternitySearch" placeholder="Search by ID" oninput="filterTableRows('maternityTableBody', this.value)"
+           style="height: 40px; padding: 0 10px; width: 200px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px;">
+</div>
+
+            </form>
+            
+            <div class="loading" id="maternityLoading">
+                <div class="spinner"></div>
+                Loading data...
+            </div>
+            
+            <table class="data-table" id="maternityTable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>phone</th>
+                        <th>room</th>
+                        <th>floor</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody id="maternityTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Babies Tab -->
+        <div id="baby" class="tab-content">
+            <h2>Babies Management</h2>
+            <form id="babyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="babyWeigt">weigt:</label>
+                        <input type="number" id="babyWeigt" min="1.5" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="babyGender">gender:</label>
+                        <select id="babyGender" required>
+                            <option value="">select gender</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: stretch; gap: 10px; margin-bottom: 10px;">
+    <button type="submit" class="btn btn-primary" style="height: 40px;">new baby</button>
+    <input type="text" id="babySearch" placeholder="Search by ID" oninput="filterTableRows('babiesTableBody', this.value)"
+           style="height: 40px; padding: 0 10px; width: 200px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px;">
+</div>
+            </form>
+            
+            <div class="loading" id="babiesLoading">
+                <div class="spinner"></div>
+                Loading data...
+            </div>
+            
+            <table class="data-table" id="babiesTable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>weight</th>
+                        <th>gender</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody id="babiesTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Birth Records Tab -->
+        <div id="birth_record" class="tab-content">
+            <h2>Birth Records</h2>
+            <form id="birthForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deliveryType">delivery_type:</label>
+                        <select id="deliveryType" required>
+                            <option value="">select delivery type</option>
+                            <option value="Vaginal">Vaginal</option>
+                            <option value="C-Section">C-Section</option>
+                            
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">birth_date:</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dischargeDate">discharge_date:</label>
+                        <input type="date" id="dischargeDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="motherSelect">maternity:</label>
+                        <select id="motherSelect" required>
+                            <option value="">select maternity id</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="babySelect">baby:</label>
+                        <select id="babySelect" required>
+                            <option value="">select baby id</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: stretch; gap: 10px; margin-bottom: 10px;">
+    <button type="submit" class="btn btn-primary" style="height: 40px;">new birth record</button>
+    <input type="text" id="birthSearch" placeholder="Search by ID" oninput="filterTableRows('birthsTableBody', this.value)"
+           style="height: 40px; padding: 0 10px; width: 200px; font-size: 14px; border: 1px solid #ccc; border-radius: 8px;">
+</div>
+            </form>
+            
+            <div class="loading" id="birthsLoading">
+                <div class="spinner"></div>Loading data...
+            </div>
+        
+            <table class="data-table" id="birthsTable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>delivery_type</th>
+                        <th>birth_date</th>
+                        <th>discharge_date</th>
+                        <th>mother id</th>
+                        <th>baby id</th>
+                        <th>maternity</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody id="birthsTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <h2>reports</h2>
+            <div class="form-row">
+                <button class="btn btn-success" onclick="generateReport('nightShift')">Night Shift Nurses</button>
+                <button class="btn btn-success" onclick="generateReport('birthWeight')">Birth Weight Analysis</button>
+                <button class="btn btn-success" onclick="generateReport('birthStats')">Birth Statistics</button>
+            </div>
+            
+            <div class="loading" id="reportsLoading">
+                <div class="spinner"></div>Generating report...</div>
+            <div id="reportContent"></div>
+        </div>
+    </div>
+
+    <!-- Procedures & Functions Tab -->
+    <div id="procedures_functions" class="tab-content">
+        <h2>procedures & functions</h2>
+    
+        <div class="procedures-section">
+            <div>
+                <h3>Program 1: Assign C-Section Mothers to Rooms</h3>
+                <p>Automatically assigns mothers who had C-sections to available rooms on floors 4 or 5</p>
+                <button class="btn btn-primary" onclick="runRoomAssignmentProgram()">Run Room Assignment Program</button>
+            </div>
+
+            
+
+            <div>
+                <h3>Program 2: Department Summary</h3>
+                <p>Randomly selects a department and returns relevant summary information</p>
+                <button class="btn btn-primary" onclick="runDepartmentSummaryProgram()">Run Department Summary Program</button>
+            </div>
+        </div>
+
+
+        <div class="results-section" style="margin-top: 20px;">
+    <h3>Execution Results</h3>
+    <div id="proceduresTableResults"></div>
+</div>
+
+</div>
+
+
+    <!-- Modal for editing -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">edit</h3>
+            <form id="modalForm">
+                <div id="modalFields"></div>
+                <div style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary">save</button>
+                    <button type="button" class="btn btn-primary" onclick="closeModal()">cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+// Global variables
+let currentEditId = null;
+let currentEditType = null;
+let editingMaternityId = null;
+
+// --- tabs ---
+function showTab(event, tabName) {
+    // הסרת קלאס פעיל מכל הטאבים והכפתורים
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+    // הצגת הטאב הנבחר והוספת קלאס פעיל לכפתור שנלחץ
+    document.getElementById(tabName).classList.add('active');
+    event.target.classList.add('active');
+
+    // טעינת הנתונים בהתאם לטאב
+    loadTabData(tabName);
+}
+
+function loadTabData(tabName) {
+    switch(tabName) {
+        case 'maternity':
+            loadMaternityData();
+            loadAvailableRooms();
+            break;
+        case 'baby':
+            loadBabiesData();
+            break;
+        case 'birth_record':
+            loadBirthRecords();
+            loadMothersAndBabies();
+            break;
+        case 'reports':
+        
+            break;
+    }
+}
+
+// --- טעינת יולדות ---
+async function loadMaternityData() {
+    showLoading('maternityLoading', true);
+    try {
+        const data = await apiCall('/api/maternity');
+        const tableBody = document.getElementById('maternityTableBody');
+        tableBody.innerHTML = '';
+
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.id_m}</td>
+                <td>${row.name}</td>
+                <td>${row.age}</td>
+                <td>${row.phone}</td>
+                <td>${row.id_r}</td>
+                <td>${row.floor}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="editRecord('maternity', ${row.id_m})">edit</button>
+                    <button class="btn btn-primary" onclick="deleteRecord('maternity', ${row.id_m})">delete</button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error loading maternity data:', error);
+    } finally {
+        showLoading('maternityLoading', false);
+    }
+}
+
+// --- טעינת חדרים ---
+async function loadAvailableRooms() {
+    try {
+        const data = await apiCall('/api/rooms');
+        const select = document.getElementById('roomSelect');
+        select.innerHTML = '<option value="">select room</option>';
+
+        data.forEach(room => {
+            const option = document.createElement('option');
+            option.value = room.id_r;
+            option.textContent = `room ${room.id_r} - floor ${room.floor}`;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading rooms:', error);
+    }
+}
+
+
+// --- טעינת תינוקות ---
+async function loadBabiesData() {
+    showLoading('babiesLoading', true);
+    try {
+        const data = await apiCall('/api/baby');
+        const tableBody = document.getElementById('babiesTableBody');
+        tableBody.innerHTML = '';
+
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.id_b}</td>
+                <td>${row.weigt}</td>
+                <td>${row.gender}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="editRecord('baby', ${row.id_b})">edit</button>
+                    <button class="btn btn-primary" onclick="deleteRecord('baby', ${row.id_b})">delete</button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error loading babies data:', error);
+    } finally {
+        showLoading('babiesLoading', false);
+    }
+}
+
+// --- טעינת רישומי לידה ---
+async function loadBirthRecords() {
+    
+    showLoading('birthsLoading', true);
+    try {
+        const data = await apiCall('/api/birth_records');
+        const tableBody = document.getElementById('birthsTableBody');
+        tableBody.innerHTML = '';
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.id_br}</td>
+                <td>${row.delivery_type}</td>
+                <td>${row.birth_date}</td>
+                <td>${row.discharge_date}</td>
+                <td>${row.id_m}</td>
+                <td>${row.id_b}</td>
+                <td>${row.mother_name || ''}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="editRecord('birth', ${row.id_br})">edit</button>
+                    <button class="btn btn-primary" onclick="deleteRecord('birth', ${row.id_br})">delete</button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error('Error loading birth records:', error);
+    } finally {
+        showLoading('birthsLoading', false);
+    }
+}
+
+// --- טעינת אמהות ותינוקות ל-select ברישומי לידה ---
+async function loadMothersAndBabies() {
+    try {
+        const [mothers, babies] = await Promise.all([
+            apiCall('/api/maternity'),
+            apiCall('/api/baby')
+        ]);
+
+        const motherSelect = document.getElementById('motherSelect');
+        motherSelect.innerHTML = '<option value="">select maternity id</option>';
+        mothers.forEach(mother => {
+            const option = document.createElement('option');
+            option.value = mother.id_m;
+            option.textContent = mother.name;
+            motherSelect.appendChild(option);
+        });
+
+        const babySelect = document.getElementById('babySelect');
+        babySelect.innerHTML = '<option value="">select baby id</option>';
+        babies.forEach(baby => {
+            const option = document.createElement('option');
+            option.value = baby.id_b;
+            option.textContent = `baby ${baby.id_b} - ${baby.gender} (${baby.weigt} kg )`;
+            babySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading mothers and babies:', error);
+    }
+}
+
+// --- שמירת יולדת חדשה ---
+document.getElementById('maternityForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+        name: document.getElementById('motherName').value,
+        age: Number(document.getElementById('motherAge').value),
+        phone: document.getElementById('motherPhone').value,
+        id_r: Number(document.getElementById('roomSelect').value)
+    };
+
+    try {
+        await apiCall('/api/maternity', 'POST', data);
+        editingMaternityId = null;
+        document.getElementById('addMaternityBtn').style.display = 'inline-block';
+        document.getElementById('updateMaternityBtn').style.display = 'none';
+        alert('Maternity added successfully!');
+        clearForm('maternityForm');
+        loadMaternityData();
+        loadAvailableRooms();
+    } catch {
+        alert('Error adding maternity');
+    }
+});
+
+// --- שמירת תינוק חדש ---
+document.getElementById('babyForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+        weigt: Number(document.getElementById('babyWeigt').value),
+        gender: document.getElementById('babyGender').value
+    };
+
+    try {
+        await apiCall('/api/baby', 'POST', data);
+        alert('New baby added successfully!');
+        clearForm('babyForm');
+        loadBabiesData();
+    } catch {
+        alert('Error adding new baby');
+    }
+});
+
+// --- שמירת רישום לידה חדש ---
+document.getElementById('birthForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+        delivery_type: document.getElementById('deliveryType').value,
+        birth_date: document.getElementById('birthDate').value,
+        discharge_date: document.getElementById('dischargeDate').value,
+        id_m: Number(document.getElementById('motherSelect').value),
+        id_b: Number(document.getElementById('babySelect').value)
+    };
+
+    try {
+        await apiCall('/api/birth_records', 'POST', data);
+        alert('Birth record added successfully!');
+        clearForm('birthForm');
+        loadBirthRecords();
+    } catch {
+        alert('Error adding birth record');
+    }
+});
+
+// --- מחיקת רשומה ---
+async function deleteRecord(type, id) {
+    if (confirm('Are you sure you want to delete this record?')) {
+        let endpoint = '';
+        switch(type) {
+            case 'baby': endpoint = `/api/baby/${id}`; break;
+            case 'maternity': endpoint = `/api/maternity/${id}`; break;
+            case 'birth': endpoint = `/api/birth_records/${id}`; break;
+            default:
+                alert('Unknown record type for deletion');
+                return;
+        }
+        try {
+            await apiCall(endpoint, 'DELETE');
+            alert('Record deleted successfully!');
+            loadTabData(type === 'birth' ? 'birth_record' : type === 'baby' ? 'baby' : 'maternity');
+        } catch {
+            alert('Error deleting the record');
+        }
+    }
+}
+
+function filterTableRows(tableBodyId, searchValue) {
+    const value = searchValue.trim().toLowerCase();
+    const rows = document.getElementById(tableBodyId).getElementsByTagName('tr');
+
+    for (let row of rows) {
+        const firstCell = row.getElementsByTagName('td')[0]; // התא של ה־ID
+        const cellText = firstCell ? firstCell.textContent.trim().toLowerCase() : '';
+        row.style.display = (!value || cellText.includes(value)) ? '' : 'none';
+    }
+}
+
+document.getElementById('maternitySearch').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // מונע שליחת הטופס בטעות
+    }
+});
+
+// --- עריכת רשומה (פתיחת מודאל) ---
+async function editRecord(type, id) {
+    try {
+        let endpoint = '';
+        switch(type) {
+            case 'baby': endpoint = `/api/baby/${id}`; break;
+            case 'maternity': endpoint = `/api/maternity/${id}`; break;
+            case 'birth': endpoint = `/api/birth_records/${id}`; break;
+            default:
+                alert('Unknown record type for editing');
+                return;
+        }
+        const record = await apiCall(endpoint);
+        currentEditId = id;
+        currentEditType = type;
+        openEditModal(type, record);
+    } catch {
+        alert('Error loading record details for editing');
+    }
+}
+function openEditModal(type, data) {
+    const modal = document.getElementById('editModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalFields = document.getElementById('modalFields');
+    modalFields.innerHTML = '';
+    modalTitle.textContent = `edit ${type}`;
+    currentEditType = type;
+    if (type === 'maternity') currentEditId = data.id_m;
+    else if (type === 'baby') currentEditId = data.id_b;
+    else if (type === 'birth') currentEditId = data.id_br;
+
+
+    if (type === 'maternity') {
+        modalFields.innerHTML = `
+            <label>name:</label>
+            <input type="text" id="edit_name" value="${data.name}" required>
+            <label>age:</label>
+            <input type="number" id="edit_age" min="15" max="50" value="${data.age}" required>
+            <label>phone:</label>
+            <input type="tel" id="edit_phone" value="${data.phone}" required>
+            <label>room:</label>
+            <select id="edit_roomSelect" required></select>
+        `;
+        apiCall('/api/rooms/available').then(rooms => {
+            const select = document.getElementById('edit_roomSelect');
+            select.innerHTML = '';
+            rooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.id_r;
+                option.textContent = `Room ${room.id_r} - Floor ${room.floor}`;
+                if (room.id_r === data.id_r) option.selected = true;
+                select.appendChild(option);
+            });
+        });
+
+    } else if (type === 'baby') {
+        modalFields.innerHTML = `
+            <label>weight:</label>
+            <input type="number" id="edit_weight" value="${data.weigt}" min="1.5" max="5" required>
+            <label>gender:</label>
+            <select id="edit_gender" required>
+                <option value="M" ${data.gender === 'M' ? 'selected' : ''}>M</option>
+                <option value="F" ${data.gender === 'F' ? 'selected' : ''}>F</option>
+            </select>
+        `;
+
+    }  else if (type === 'birth') {
+    const formattedBirthDate = new Date(data.birth_date).toISOString().split('T')[0];
+    const formattedDischargeDate = data.discharge_date
+        ? new Date(data.discharge_date).toISOString().split('T')[0]
+        : '';
+
+    modalFields.innerHTML = `
+        <label>delivery type:</label>
+        <select id="edit_delivery_type" required>
+            <option value="Vaginal" ${data.delivery_type === 'Vaginal' ? 'selected' : ''}>Vaginal</option>
+            <option value="C-Section" ${data.delivery_type === 'C-Section' ? 'selected' : ''}>C-Section</option>
+        </select>
+        <label>birth date:</label>
+        <input type="date" id="edit_birth_date" value="${formattedBirthDate}" required>
+        <label>discharge date:</label>
+        <input type="date" id="edit_discharge_date" value="${formattedDischargeDate}">
+        <label>mother ID:</label>
+        <input type="number" id="edit_mother_id" value="${data.id_m}" required>
+        <label>baby ID:</label>
+        <input type="number" id="edit_baby_id" value="${data.id_b}" required>
+    `;
+}
+
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('editModal').style.display = 'none';
+    currentEditId = null;
+    currentEditType = null;
+}
+
+document.getElementById('modalForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    let updatedData = {};
+    let endpoint = '';
+
+    if (currentEditType === 'maternity') {
+        updatedData = {
+            name: document.getElementById('edit_name').value,
+            age: Number(document.getElementById('edit_age').value),
+            phone: document.getElementById('edit_phone').value,
+            id_r: Number(document.getElementById('edit_roomSelect').value)
+        };
+        endpoint = `/api/maternity/${currentEditId}`;
+    } else if (currentEditType === 'baby') {
+        updatedData = {
+            weigt: Number(document.getElementById('edit_weight').value),
+            gender: document.getElementById('edit_gender').value
+        };
+        endpoint = `/api/baby/${currentEditId}`;
+    } else if (currentEditType === 'birth') {
+        updatedData = {
+            delivery_type: document.getElementById('edit_delivery_type').value,
+            birth_date: document.getElementById('edit_birth_date').value,
+            discharge_date: document.getElementById('edit_discharge_date').value,
+            id_m: Number(document.getElementById('edit_mother_id').value),
+            id_b: Number(document.getElementById('edit_baby_id').value)
+        };
+        endpoint = `/api/birth_records/${currentEditId}`;
+    }
+
+    try {
+        await apiCall(endpoint, 'PUT', updatedData);
+        alert('Record updated successfully!');
+        closeModal();
+        const tabName = currentEditType === 'birth' ? 'birth_record' : currentEditType;
+        loadTabData(tabName);
+    } catch (err) {
+        alert('Error updating record: ' + err.message);
+    }
+});
+
+
+// --- כלים ---
+function showLoading(elementId, show) {
+    document.getElementById(elementId).style.display = show ? 'block' : 'none';
+}
+
+function clearForm(formId) {
+    document.getElementById(formId).reset();
+}
+async function generateReport(reportType) {
+    showLoading('reportsLoading', true);
+    const reportContent = document.getElementById('reportContent');
+
+    try {
+        let endpoint = '';
+        let title = '';
+
+switch (reportType) {
+    case 'nightShift':
+        endpoint = '/api/queries/night_shift_nurses';
+        title = 'Night Shift Nurses Report';
+        break;
+    case 'birthWeight':
+        endpoint = '/api/queries/birth_weight_analysis';
+        title = 'Birth Weight Analysis';
+        break;
+    case 'birthStats':
+        endpoint = '/api/queries/monthly_birth_statistics';
+        title = 'Monthly Birth Statistics';
+        break;
+    default:
+        throw new Error('Unsupported report type');
+}
+
+
+        const data = await apiCall(endpoint);
+        if (!data || data.length === 0) {
+            reportContent.innerHTML = `<h3>${title}</h3><p>No data to display.</p>`;
+        } else {
+            const table = generateTableFromData(data);
+            reportContent.innerHTML = `<h3>${title}</h3>${table}`;
+        }
+
+    } catch (err) {
+        reportContent.innerHTML = `<p style="color:red;">error: ${err.message}</p>`;
+    } finally {
+        showLoading('reportsLoading', false);
+    }
+}
+
+function generateTableFromData(data) {
+    if (!Array.isArray(data) || data.length === 0) return '<p>No data to display.</p>';
+
+    const keys = Object.keys(data[0]);
+    let table = '<table class="data-table"><thead><tr>';
+
+    // יצירת כותרות טבלה
+    keys.forEach(key => {
+        table += `<th>${key}</th>`;
+    });
+    table += '</tr></thead><tbody>';
+
+    // יצירת שורות טבלה
+    data.forEach(row => {
+        table += '<tr>';
+        keys.forEach(key => {
+            table += `<td>${row[key]}</td>`;
+        });
+        table += '</tr>';
+    });
+
+    table += '</tbody></table>';
+    return table;
+}
+
+async function runRoomAssignmentProgram() {
+    const resultDiv = document.getElementById('proceduresTableResults');
+    resultDiv.innerHTML = "Running Room Assignment Program...";
+
+    try {
+        const response = await fetch('/api/procedure/assign_rooms_and_return', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ params: [] })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            resultDiv.innerHTML = generateTableFromData(data.result || []);
+        } else {
+            resultDiv.innerHTML = `<p style="color:red;">Procedure failed: ${data.message}</p>`;
+        }
+    } catch (e) {
+        resultDiv.innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
+    }
+}
+
+async function runDepartmentSummaryProgram() {
+    const resultDiv = document.getElementById('proceduresTableResults');
+    resultDiv.innerHTML = "Running Department Summary Program...";
+
+    try {
+        const response = await fetch('/api/procedure/get_department_summary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ params: [] })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            resultDiv.innerHTML = generateTableFromData(data.result || []);
+        } else {
+            resultDiv.innerHTML = `<p style="color:red;">Procedure failed: ${data.message}</p>`;
+        }
+    } catch (e) {
+        resultDiv.innerHTML = `<p style="color:red;">Error: ${e.message}</p>`;
+    }
+}
+
+
+// --- התחלת האפליקציה ---
+document.addEventListener('DOMContentLoaded', () => {
+    // כדאי לשנות את ה-buttons כדי להעביר גם event:
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabName = e.currentTarget.textContent.trim();
+
+            // התאמת השמות לשמות ה-id של הטאבים
+            const map = {
+                'maternity': 'maternity',
+                'baby': 'baby',
+                'birth_record': 'birth_record',
+                'reports': 'reports',
+                'procedures & functions':'procedures_functions'
+            };
+            showTab(e, map[tabName]);
+        });
+    });
+
+    loadTabData('maternity');
+});
+
+document.getElementById('motherSelect').addEventListener('focus', async () => {
+    try {
+        const mothers = await apiCall('/api/maternity');
+        const motherSelect = document.getElementById('motherSelect');
+        motherSelect.innerHTML = '<option value="">select maternity id</option>';
+
+        mothers.forEach(mother => {
+            const option = document.createElement('option');
+            option.value = mother.id_m;
+            option.textContent = `${mother.id_m} - ${mother.name}`;
+            motherSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading mothers on focus:', error);
+    }
+});
+
+document.getElementById('babySelect').addEventListener('focus', async () => {
+    try {
+        const babies = await apiCall('/api/baby/unassigned');
+        const babySelect = document.getElementById('babySelect');
+
+        babySelect.innerHTML = '';
+
+        if (!babies || babies.length === 0) return;
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'select baby id';
+        babySelect.appendChild(defaultOption);
+
+        babies.forEach(baby => {
+            if (baby && baby.id_b !== undefined && baby.id_b !== null) {
+                const option = document.createElement('option');
+                option.value = baby.id_b;
+                option.textContent = `baby ${baby.id_b}`;
+                babySelect.appendChild(option);
+            }
+        });
+    } catch (error) {
+        console.error('Error loading unassigned babies:', error);
+    }
+});
+
+document.getElementById('roomSelect').addEventListener('focus', async () => {
+    try {
+        const rooms = await apiCall('/api/rooms/available');
+        const roomSelect = document.getElementById('roomSelect');
+        roomSelect.innerHTML = '<option value="">select room</option>';
+
+        // מסננים רק חדרים פנויים
+        const vacantRooms = rooms.filter(room => room.availability === 'vacancy');
+
+        vacantRooms.forEach(room => {
+            const option = document.createElement('option');
+            option.value = room.id_r;
+            option.textContent = `Room ${room.id_r} - Floor ${room.floor}`;
+            roomSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading vacant rooms:', error);
+    }
+});
+
+
+// פונקציה כללית לקריאות API
+async function apiCall(url, method = 'GET', body = null) {
+    const options = {
+        method,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    if (body) {
+        options.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(url, options);
+    if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message || 'שגיאה בקריאת נתונים מהשרת');
+    }
+
+    return response.json();
+}
+
+</script>
+</body>
+</html>

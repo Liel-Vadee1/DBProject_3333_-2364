@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <h1>Maternity Ward Management System</h1>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label>Username:</label><br />
+        <input type="text" id="username" required><br />
+        <label>Password:</label><br />
+        <input type="password" id="password" required /><br /><br />
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+
+    <p id="message"></p>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            });
+
+            const result = await response.json();
+            const messageEl = document.getElementById('message');
+
+            if(result.success) {
+                messageEl.textContent = 'Login successful!';
+
+                window.location.href = '/index.html'; 
+            } else {
+                messageEl.textContent = 'Login failed: ' + (result.message || 'Unknown error');
+            }
+        });
+    </script>
+</body>
+</html>
