@@ -561,6 +561,12 @@ Modify details of an existing entry:
 Remove a selected entry from the database:
    ![delete_data](stage%205/images/delete.png)
 
+3. **search Data**
+
+Search by id from the database:
+   ![search_data](stage%205/images/search.png)
+
+
 
 ### Query display
 Contains three buttons, each executing a different predefined query.  
