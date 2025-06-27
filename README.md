@@ -32,6 +32,15 @@ Hospital Maternity Department Management System
    - [Programs](#programs)
    - [Triggers](#triggers)
    - [Conclusion](#conclusion-4)
+-[Phase 5: GUI](#phase-5-gui)
+   - [Gui for Managing the Maternity department](#graphical-user-interface-for-managing-the-maternity-department)
+   - [Technologies used](#technologies-used)
+   - [Login screen](#login-screen)
+   - [Data display](#data-display)
+   - [Data oprations display](#data-operations-display)
+   - [Query display](#query-display)
+   - [Program display](#program-display)
+   - [Conclusion 5](#conclusion-5)
 
 ## Phase 1: Design and Build the Database  
 
@@ -487,4 +496,109 @@ At this stage, we implemented advanced logic and automation within the database 
 In addition, we designed and implemented two key triggers to maintain database consistency and automate staff assignment. A trigger that ensures that each birth registration is immediately associated with a specialist, and a trigger that ensures that room assignments remain covered when a nurse is removed, thus ensuring continuous patient care.
 
 These automated processes significantly reduce the need for manual intervention, minimize errors, and ensure that the system dynamically adapts to real-world scenarios, laying a strong foundation for future scalability and reliability of the hospital management system.
+
+## Phase 5: GUI
+### Graphical User Interface for Managing the Maternity Department
+
+This phase includes building a browser-based interface that allows project managers to interact with the database in a clear and user-friendly way.  
+The interface supports full CRUD operations (Create, Read, Update, Delete), as well as running predefined queries and stored procedures.
+
+## Technologies Used
+
+The system's interface is web-based and was developed using the **Visual Studio Code** environment.  
+The backend is written in **Python**, using the **Flask** framework to handle server-side logic and enable communication between the backend and frontend.  
+The frontend consists of static HTML, CSS, and JavaScript files served by Flask.
+
+### Login screen
+
+The main screen displays a login form with the following fields:
+
+- **Username**: Enter your username (project manager).
+- **Password**: Enter your personal password.
+- Click the **Login** button.
+
+If the username and password are correct, the user is redirected to the system's main dashboard.  
+If the credentials are incorrect, an error message appears prompting the user to try again.
+
+![login_screen](stage%205/images/login.png)
+
+
+### Data display
+
+Once logged in, the user can navigate between six main tabs:
+
+1. **Maternity Data**
+
+Displays all maternity records:
+   ![maternity_data](stage%205/images/maternity_database.png)
+
+2. **Baby Data**
+
+Displays all baby records:
+   ![baby_data](stage%205/images/baby_database.png)
+
+3. **Birth Record Data**
+
+Displays detailed birth records:
+   ![birthrecord_data](stage%205/images/birthrecord_database.png)
+
+
+### Data operations display
+Allows users to perform the following operations:
+
+1. **Add New Data**
+
+Insert new maternity, baby, or birth record:
+   ![add_data](stage%205/images/add_new.png)
+
+2. **Update Data**
+
+Modify details of an existing entry:
+   ![update_data](stage%205/images/update.png)
+
+3. **Delete Data**
+
+Remove a selected entry from the database:
+   ![delete_data](stage%205/images/delete.png)
+
+
+### Query display
+Contains three buttons, each executing a different predefined query.  
+Upon clicking, the relevant data is displayed below:
+
+1. **Room and Night Shift Nurse Assignment**
+
+   ![query1](stage%205/images/query1.png)
+
+2. **Birth Type and Baby Weight Correlation**
+
+   ![query2](stage%205/images/query2.png)
+
+3. **Monthly Birth Statistics**
+
+   ![query3](stage%205/images/query3.png)
+
+
+### Program display
+This section displays the result of procedures, such as:
+
+**Find an Available Room**
+
+The procedure searches for a free room on the appropriate floor and returns its number:
+   ![program1](stage%205/images/program1.png)
+
+
+## Conclusion 5
+
+In this phase, we designed and implemented a full browser-based graphical user interface for managing the maternity department database.
+
+The system allows project managers to:
+- Log in securely with personal credentials
+- View, insert, update, and delete data from the maternity, baby, and birth record tables
+- Run predefined queries and stored procedures through a user-friendly interface
+- Navigate easily between six main tabs, each serving a specific purpose
+
+This phase significantly improved data accessibility and usability, enabling intuitive and efficient management of all database operations directly from the web.
+
+The interface was developed using Python and Flask for the backend, and is served via a static frontend rendered in the browser.
 
