@@ -32,7 +32,7 @@ Hospital Maternity Department Management System
    - [Programs](#programs)
    - [Triggers](#triggers)
    - [Conclusion](#conclusion-4)
--[Phase 5: GUI](#phase-5-gui)
+- [Phase 5: GUI](#phase-5-gui)
    - [Gui for Managing the Maternity department](#graphical-user-interface-for-managing-the-maternity-department)
    - [Technologies used](#technologies-used)
    - [Login screen](#login-screen)
