@@ -126,10 +126,10 @@ The second phase involved several important data updates to optimize the databas
    ![Discharge Date Update](stage%202/resources/discharge_date_update.png)
 
    Before update:
-   ![Date Status Before](stage%202/resources/historical_before.png)
+   ![Date Status Before](stage%202/resources/before_update.png)
    
    After update:
-   ![Date Status After](stage%202/resources/historical_after.png)
+   ![Date Status After](stage%202/resources/after.png)
 
 2. **Room Occupancy Status**  
    Room status was updated to mark rooms as "Occupied" only when they contain two mothers, improving resource allocation.
