@@ -137,10 +137,10 @@ The second phase involved several important data updates to optimize the databas
    ![Room Update](stage%202/resources/occupied_code.png)
 
    Before update:
-   ![Room Status Before](stage%202/resources/room_status_before.png)
+   ![Room Status After](stage%202/resources/room_status_after.png)
    
    After update:
-   ![Room Status After](stage%202/resources/room_status_after.png)
+   ![Room Status Before](stage%202/resources/room_status_before.png)
 
 3. **Patient Contact Information**  
    Updated contact information for specific patients when necessary, such as phone number updates.
