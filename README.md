@@ -125,9 +125,17 @@ The second phase involved several important data updates to optimize the databas
    
    ![Discharge Date Update](stage%202/resources/discharge_date_update.png)
 
+   Before update:
+   ![Date Status Before](stage%202/resources/historical_before.png)
+   
+   After update:
+   ![Date Status After](stage%202/resources/historical_after.png)
+
 2. **Room Occupancy Status**  
    Room status was updated to mark rooms as "Occupied" only when they contain two mothers, improving resource allocation.
    
+   ![Room Update](stage%202/resources/occupied_code.png)
+
    Before update:
    ![Room Status Before](stage%202/resources/room_status_before.png)
    
@@ -137,6 +145,8 @@ The second phase involved several important data updates to optimize the databas
 3. **Patient Contact Information**  
    Updated contact information for specific patients when necessary, such as phone number updates.
    
+   ![Patient Contact Update](stage%202/resources/maternity.png)
+
    Before update:
    ![Contact Before](stage%202/resources/contact_before.png)
    
