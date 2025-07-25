@@ -178,6 +178,8 @@ Several cleanup operations were performed to maintain database quality:
 
 1. **Historical Record Removal**  
    Deleted birth records prior to April 7, 2024 to maintain relevant data only.
+
+   ![Delete](stage%202/resources/delete_update.png)
    
    Before deletion:
    ![Historical Records Before](stage%202/resources/historical_before.png)
@@ -187,7 +189,9 @@ Several cleanup operations were performed to maintain database quality:
 
 2. **Staff Qualification Filtering**  
    Removed doctors with zero years of experience in cesarean specialization.
-   
+
+   ![Delete](stage%202/resources/0_seniority.png)
+
    Before filtering:
    ![Doctors Before](stage%202/resources/doctors_before.png)
    
@@ -197,6 +201,8 @@ Several cleanup operations were performed to maintain database quality:
 3. **Unassigned Staff Cleanup**  
    Deleted nurse records not associated with any room to maintain data relevance.
    
+   ![Delete](stage%202/resources/nurses_no_room.png)
+
    Before cleanup:
    ![Nurses Before](stage%202/resources/nurses_before.png)
    
@@ -277,6 +283,9 @@ The database implements transaction control to ensure data integrity:
 
 1. **Rollback Operations**  
    Capability to revert changes when necessary, preserving data integrity.
+
+   rollback:
+   ![Initial State](stage%202/resources/rollback1.png)
    
    Initial state:
    ![Initial State](stage%202/resources/rollback2.png)
@@ -289,6 +298,9 @@ The database implements transaction control to ensure data integrity:
 
 2. **Commit Operations**  
    Finalizing changes to make them permanent in the database.
+
+   Commit:
+   ![Pre-Commit State](stage%202/resources/commit.png)
    
    Before update:
    ![Pre-Commit State](stage%202/resources/commit1.png)
