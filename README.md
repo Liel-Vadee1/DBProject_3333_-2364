@@ -179,7 +179,7 @@ Several cleanup operations were performed to maintain database quality:
 1. **Historical Record Removal**  
    Deleted birth records prior to April 7, 2024 to maintain relevant data only.
 
-   ![Delete](stage%202/resources/delete_update.png)
+   ![Delete](stage%202/resources/delete_date.png)
    
    Before deletion:
    ![Historical Records Before](stage%202/resources/historical_before.png)
